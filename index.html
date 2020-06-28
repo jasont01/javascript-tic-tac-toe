@@ -19,11 +19,26 @@
       <h1 class="navbar-brand">Tic Tac Toe</h1>
     </nav>
 
-    
+    <div class="container my-5">
+      <div class="alert alert-success hidden" role="alert" id="alert"></div>
+      <div class="game-board">
+        <div class="box"><button id="0"></button></div>
+        <div class="box"><button id="1"></button></div>
+        <div class="box"><button id="2"></button></div>
+        <div class="box"><button id="3"></button></div>
+        <div class="box"><button id="4"></button></div>
+        <div class="box"><button id="5"></button></div>
+        <div class="box"><button id="6"></button></div>
+        <div class="box"><button id="7"></button></div>
+        <div class="box"><button id="8"></button></div>
+      </div>
+
+      <button class="btn btn-primary" id="new-game">New Game</button>
+    </div>
 
   </div>
 
-  <script src="assets/js/script.js"></script>
+  <script type="module" src="assets/js/game.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
