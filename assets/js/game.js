@@ -1,4 +1,5 @@
 let ticTacToe = (() => {
+
   let board = new Array(9).fill(" ");
   let currentPlayer = "X";
   let winning_lines = [
@@ -10,8 +11,6 @@ let ticTacToe = (() => {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]];
-
-  render();
 
   //cacheDom
   let $gameBoard = $('.game-board');
@@ -25,59 +24,41 @@ let ticTacToe = (() => {
 
   function validateMove(event) {
     let selected = $(event.target).closest('.box');
-    let i = $gameBoard.find('.box').index(selected);
+    let i = $button.index(selected);
     if (board[i] == " ") {
-      makeMove(i);
+      board[i] = currentPlayer
       render();
+      checkForWinner();
     } else {
-      alert("Invalid Move")
+      window.alert("Invalid Move");
     };
-  };
-
-  function makeMove(move) {
-    board[move] = currentPlayer
-    checkForWinner();
   };
 
   function checkForWinner() {
-    if (board.every(square => square != " ")) tieGame();
     if (winning_lines.some(line => line.every(i => board[i] == currentPlayer))) {
-      gameOver();
+      gameOver(`${currentPlayer} wins!`);
     } else {
-      changePlayer();
+      currentPlayer = (currentPlayer == "X") ? "O" : "X";
     };
+    if (board.every(square => square != " ")) gameOver('Tie!');
   };
 
-  function changePlayer() {
-    if (currentPlayer == "X") {
-      currentPlayer = "O"
-    } else {
-      currentPlayer = "X"
-    };
-  };
-
-  function tieGame() {
-    alert.innerHTML = `Tie!`;
+  function gameOver(msg) {
+    $button.off('click');
+    alert.innerHTML = msg;
     alert.classList.remove("hidden");
-  };
-
-  function gameOver() {
-    alert.innerHTML = `${currentPlayer} wins!`;
-    alert.classList.remove("hidden");
-  };
-
-  function render() {
-    board.forEach((value, index) => document.getElementById(index).innerHTML = value);
   };
 
   function newGame() {
     board = new Array(9).fill(" ");
     currentPlayer = "X";
+    $button.on('click', validateMove.bind(this));
     alert.classList.add("hidden");
     render();
   }
+  
+  function render() {
+    board.forEach((value, index) => document.getElementById(index).innerHTML = value);
+  };
 
-  return { newGame }
-});
-
-let game = ticTacToe();
+})();
