@@ -2,7 +2,7 @@ let ticTacToe = (() => {
 
   let board = new Array(9).fill(" ");
   let currentPlayer = "X";
-  let winning_lines = [
+  const winning_lines = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
